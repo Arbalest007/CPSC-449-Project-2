@@ -1,21 +1,24 @@
-from inspect import _void
+from array import array
+from typing import (List, Tuple)
 import sqlite3
 
 #Required to create a request and response body for data
 from pydantic import BaseModel
 #Define FastAPI HTTP Methods
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 
 class userWord(BaseModel):
     guess: str
-    valid: bool
+
+class wordList(BaseModel):
+    words: List[str] = None
 
 app = FastAPI()
 
 #Check if the word is a valid guess by comparing to predefined Words DB
-@app.post('/validate/')
+@app.post('/validate/', status_code=status.HTTP_200_OK)
 def validate(userInput: userWord):
-    #Connect DB for word strings
+    #Connect DB
     con = sqlite3.connect("words_ms.db")
     cur = con.cursor()
 
@@ -31,23 +34,48 @@ def validate(userInput: userWord):
     #     print(row)
 
     if cur.execute("SELECT 1 FROM t WHERE Words = ?", (userInput.guess,)).fetchone():
-        userInput.valid = True
-
         con.close()
-        return userInput.valid
+        return True
     else:
-        userInput.valid = False
-
         con.close()
-        return userInput.valid
+        return False
 
-#TODO - Feature to remove or add words from the Words DB
-#Add a guess to the Words DB
-@app.post('/add-guess/')
-def add(userInput: userWord):
-    print("Hello World. Adding a word here!")
+#Add guesses to the Words DB
+@app.post('/add-guess/', status_code=status.HTTP_202_ACCEPTED)
+def add(addWords: wordList):
+    # #Debugging
+    # for i in addWords.words:
+    #     print(i)
 
-#Remove a guess from the Words DB
-@app.post('/remove-guess/')
-def remove(userInput: userWord):
-    print("Hello World. Removing a word here!")
+    #Connect DB
+    con = sqlite3.connect("words_ms.db")
+    cur = con.cursor()
+
+    for i in addWords.words:
+        try:
+            cur.execute("INSERT INTO t VALUES(?)", (i,))
+            con.commit()
+        except:
+            print(i + " already exists in the Words database")
+    
+    con.close()
+
+    return "Words added to DB!"
+
+#Remove guesses from the Words DB
+@app.post('/remove-guess/', status_code=status.HTTP_202_ACCEPTED)
+def remove(removeWords: wordList):
+    #Connect DB
+    con = sqlite3.connect("words_ms.db")
+    cur = con.cursor()
+
+    for i in removeWords.words:
+        try:
+            cur.execute("DELETE FROM t WHERE Words = ?", (i,))
+            con.commit()
+        except:
+            print("Unable to delete value of: " + i)
+    
+    con.close()
+
+    return "Words removed from DB!"
