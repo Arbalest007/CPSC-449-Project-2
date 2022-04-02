@@ -50,7 +50,7 @@ def validate(userInput: userWord):
         for line in f:
             if line.islower():
                 if line.isascii():
-                    if len(line) <= 5:
+                    if len(line) == 5:
                         if not('\'' in line):
                             #Debugging
                             #print(line)
