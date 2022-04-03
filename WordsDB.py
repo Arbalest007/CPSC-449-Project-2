@@ -18,15 +18,8 @@ try:
                         cleaned_line = line.replace("\n", "")
 
                         if len(line) == 6:
-                            #Debugging
-                            #print(line)
-                          
-                            #cur.execute("INSERT INTO t (Words) VALUES (?)", (line,))
                             cur.execute("INSERT INTO t VALUES(?)", (cleaned_line,))
                             con.commit()
-                       
-                            #Debugging
-                            #print("Word has been inserted!")
 except:
     print("DB is already populated with pre-defined words!")
 

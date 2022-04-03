@@ -31,29 +31,12 @@ def check(input: answers):
     #Counter to iterate through for green indexes
     greenCounter = 0
 
-    #Debugging
-    print(input.user)
-    print(input.server)
-
     currentCheck = answerCheck()
 
     for character in input.user:
-        # #Debugging
-        # print(character)
-        # print(input.server[count])
-        # if (count + 1) > 4:
-        #     continue
-        # else:
-        #     count += 1
-
-
         #If the current character equals the letter in the daily answer string at the same location then
         #add that index to greenIndexes
         if character == input.server[greenCounter]:
-            #Debugging
-            print(character)
-            print(input.server[greenCounter])
-
             currentCheck.greenIndexes.append(greenCounter)
             greenCounter += 1
         else:
@@ -107,7 +90,7 @@ def check(input: answers):
     return currentCheck
 
 #Add answers
-@app.post('/add-guess/', status_code=status.HTTP_202_ACCEPTED)
+@app.post('/add-answer/', status_code=status.HTTP_202_ACCEPTED)
 def add(addWords: wordList):
     #Connect DB
     con = sqlite3.connect("answers.db")
@@ -125,7 +108,7 @@ def add(addWords: wordList):
     return "Words added to DB!"
 
 #Remove answers
-@app.post('/remove-guess/', status_code=status.HTTP_202_ACCEPTED)
+@app.post('/remove-answer/', status_code=status.HTTP_202_ACCEPTED)
 def remove(removeWords: wordList):
     #Connect DB
     con = sqlite3.connect("answers.db")

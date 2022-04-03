@@ -21,17 +21,6 @@ def validate(userInput: userWord):
     con = sqlite3.connect("words_ms.db")
     cur = con.cursor()
 
-    #Debugging
-    # print("The entered word was: " + userInput.guess)
-    # a = cur.execute("SELECT * FROM t").fetchall()
-    # for row in a:
-    #     print(row)
-    
-    # #Debugging
-    # a = cur.execute("SELECT 1 FROM t WHERE Words = ?", (userInput.guess,)).fetchone()
-    # for row in a:
-    #     print(row)
-
     if cur.execute("SELECT 1 FROM t WHERE Words = ?", (userInput.guess,)).fetchone():
         con.close()
         return True
@@ -42,10 +31,6 @@ def validate(userInput: userWord):
 #Add guesses to the Words DB
 @app.post('/add-guess/', status_code=status.HTTP_202_ACCEPTED)
 def add(addWords: wordList):
-    # #Debugging
-    # for i in addWords.words:
-    #     print(i)
-
     #Connect DB
     con = sqlite3.connect("words_ms.db")
     cur = con.cursor()
