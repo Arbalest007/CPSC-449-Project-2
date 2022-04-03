@@ -1,5 +1,4 @@
-from array import array
-from typing import (List, Tuple)
+from typing import List
 import sqlite3
 
 #Required to create a request and response body for data
