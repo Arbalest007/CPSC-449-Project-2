@@ -5,6 +5,12 @@
 # "How to initialize the databases & start the services"/"Example commands for methods"
 
 //====Commands in File "AnswerValidation.py"====
+Description: 'AnswerValidation.py' handles the database of possible answers and is responsible for
+              setting the color values of each letter for a user's given guess.
+              
+              /checkAnswer/   - sets color values of letters for a given guess against the daily word
+              /add-answer/    - adds a new possible answer to the database
+              /remove-answer/ - removes an answer from the database
 
 1) /checkAnswer/
       The check answer command will call the "answerCheck()" function to initialize 3 empty
@@ -26,3 +32,5 @@
    be found.
 
 //====Functions in File "WordValidation.py"====
+
+1) 
