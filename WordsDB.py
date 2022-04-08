@@ -17,16 +17,9 @@ try:
                         #Need to remove \n from end of string
                         cleaned_line = line.replace("\n", "")
 
-                        if len(line) == 6:
-                            #Debugging
-                            #print(line)
-                          
-                            #cur.execute("INSERT INTO t (Words) VALUES (?)", (line,))
+                        if len(cleaned_line) == 5:
                             cur.execute("INSERT INTO t VALUES(?)", (cleaned_line,))
                             con.commit()
-                       
-                            #Debugging
-                            #print("Word has been inserted!")
 except:
     print("DB is already populated with pre-defined words!")
 

@@ -11,9 +11,6 @@ data = json.load(f)
 
 try:
     for i in data:
-        # #Debugging
-        # print(i)
-        
         cur.execute("INSERT INTO a VALUES(?)", (i,))
         con.commit()
 except:
