@@ -33,6 +33,9 @@ Description: 'AnswerValidation.py' handles the database of possible answers, and
    be found.
 
 //====Commands in File "WordValidation.py"====
+    
+Description: 'WordValidation.py' handles the database of possible words, and is responsible for
+              validating if a user guess is valid.
 
               /validate/     - checks if user guess is valid word
               /add-guess/    - adds a new possible guess to the database
