@@ -5,6 +5,7 @@
 # "How to initialize the databases & start the services"/"Example commands for methods"
 
 //====Commands in File "AnswerValidation.py"====
+
 Description: 'AnswerValidation.py' handles the database of possible answers and is responsible for
               setting the color values of each letter for a user's given guess.
               
