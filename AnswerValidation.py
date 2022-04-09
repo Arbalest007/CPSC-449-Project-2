@@ -112,15 +112,12 @@ def add(input: wordList):
     con = sqlite3.connect("answers.db")
     cur = con.cursor()
 
-    print(input.word)
-    print(input.gameID)
-
     try:
         cur.execute("UPDATE a SET Answers = ? WHERE ID = ?", (input.word, input.gameID))
         con.commit()
     except:
-        print("Error updating the DB")
+        return {"status": "ERROR encountered updating the DB"}
     
     con.close()
 
-    return {"status": "Future Game Answer Updated Successfully!"}
+    return {"status": "UPDATE ran successfully!"}
