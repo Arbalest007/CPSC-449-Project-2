@@ -23,11 +23,11 @@
 
 1. /checkAnswer/
       The 'check-answer' command will call the "answerCheck()" function to initialize 3 empty
-   containers which will be used to store the current guess's letter colors.  Firstly, a loop
-   will iterate through the word and check for matching letters, and it will set those indexes to
+   lists which will be used to store the current guess's letter colors.  Firstly, a loop
+   will iterate through the word and check for matching letters, and it will record those indexes to
    be green if they match the daily word.  The next loop iterates through the word again while skipping
-   any previously set indexes (green indexes).  The loop will then set the indexes of yellow and gray
-   letters.  The container holding all of the colors will be returned.
+   any previously set indexes (green indexes).  The loop will then record the indexes of yellow and gray
+   letters.  The JSON object holding these 3 lists showing what indexes should be what colors will be returned.
    
 2. /change-answer/
       The 'change-answer' command will connect to the "answers.db", which is the answers database, 
