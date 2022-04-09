@@ -19,8 +19,7 @@
               setting the color values of each letter for a user's given guess.
               
               /checkAnswer/   - sets color values of letters for a given guess against the daily word
-              /add-answer/    - adds a new possible answer to the database
-              /remove-answer/ - removes an answer from the database
+              /change-answer/    - update future answers
 
 1. /checkAnswer/
       The 'check-answer' command will call the "answerCheck()" function to initialize 3 empty
@@ -30,16 +29,9 @@
    any previously set indexes (green indexes).  The loop will then set the indexes of yellow and gray
    letters.  The container holding all of the colors will be returned.
    
-2. /add-answer/
-      The 'add-answer' command will connect to the "answers.db", which is the answers database, 
-   and check whether the new possible answer exists in the database or not.  If it does not
-   exist in the database it will add it, otherwise it will return that the word already exists in the
-   database.
-   
-3. /remove-answer/
-      The 'remove-answer' command will connect to the "answers.db", and it will check for the given
-   word to remove.  If it exists it will remove it, otherwise it will return that the value could not
-   be found.
+2. /change-answer/
+      The 'change-answer' command will connect to the "answers.db", which is the answers database, 
+   and attempt to update the row containing the specified Game ID with a new word using the UPDATE SQL command.
 
 > Commands in File "WordValidation.py" <br>
 > Description: 'WordValidation.py' handles the database of possible words, and is responsible for
@@ -51,14 +43,14 @@
 
 1. /validate/
       The 'validate' command will connect to the 'words_ms.db', and it will check whether a guess is a
-    valid word.  It either returns true if the word is a valid guess, or false if it is invalid.
+    valid word.  It compares the guess against the database to see if it exists as a potential guess. It either returns true if the word is a valid guess, or false if it is invalid.
     
 2. /add-guess/
-      The 'add-guess' command will connect to the 'words_ms.db', and it will check through the database
-    for the word that is a candidate to be added.  If it already exists it will not be added, but if it doesnt
+      The 'add-guess' command will connect to the 'words_ms.db'. It takes in a list of words and it will check through the database
+    for each word to see if it can be added.  If it already exists it will not be added, but if it doesnt
     then it will be.
 
 3. /remove-guess/
-      The 'remove-guess' command will connect to the 'words_ms.db', and it will check through the database
-    for the word that is a candidate to be deleted.  If the word cannot be found then the command will return
+      The 'remove-guess' command will connect to the 'words_ms.db'. It takes in a list of words and it will check through the database
+    for each word to see if it can be deleted.  If the word cannot be found then the command will return
     that the word was unable to be deleted.  Otherwise, the command will remove the word from the database.
