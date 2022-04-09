@@ -41,7 +41,7 @@
    ![DBA1](https://user-images.githubusercontent.com/39601543/162555430-b365e090-fc0e-4203-afa7-cfb57e4ba6cf.png)
    ![DBA2](https://user-images.githubusercontent.com/39601543/162555440-afd352f3-9813-4f5e-be86-8d4de8b09d40.png)
 
-#Guess Validation Microservice
+# Guess Validation Microservice
 > Commands in File "WordValidation.py" <br>
 > Description: 'WordValidation.py' handles the database of possible words, and is responsible for
               validating if a user guess is valid.
