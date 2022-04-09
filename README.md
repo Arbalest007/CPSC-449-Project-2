@@ -2,7 +2,7 @@
 ###### Authors: Tianna Cano, Patrick Lin, Raymond Magdaleno, Mark Wiedman
 ###### Date   : 4/8/2022
 
-# Database and Microservice Initialization
+# Database and Microservices Initialization
 - **You can clone this github repo or download and extract the folder onto your machine.**
 
 - **It is required to run the AnswersDB.py and WordsDB.py files before running the procfile! _This is to create and initialize the databases if they do not already exist._**
