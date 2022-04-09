@@ -3,10 +3,15 @@
 ###### Date   : 4/8/2022
 
 # "How to initialize the databases & start the services"/"Example commands for methods"
+- **You can clone this github repo or download and extract the folder onto your machine.**
 
-- **To get started, it is required to run the AnswersDB.py and WordsDB.py files before running the procfile! _This is to create the databases if they do not already exist._**
+- **It is required to run the AnswersDB.py and WordsDB.py files before running the procfile! _This is to create and initialize the databases if they do not already exist._**
 <br> `$ python3 AnswersDB.py`
 <br> `$ python3 WordsDB.py`
+
+- **Then you run the procfile using foreman**
+<br> `$ foreman start`
+![VirtualBox_Tuffix 2020 Edition_08_04_2022_19_58_09](https://user-images.githubusercontent.com/39601543/162554364-03d65d09-02ec-4de7-83a5-5adcbb0efc2d.png)
 
 
 > Commands in File "AnswerValidation.py"<br>
