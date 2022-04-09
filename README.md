@@ -18,8 +18,8 @@
 > Description: 'AnswerValidation.py' handles the database of possible answers, and is responsible for
               setting the color values of each letter for a user's given guess.
               
-              /checkAnswer/   - sets color values of letters for a given guess against the daily word
-              /change-answer/    - update future answers
+              /checkAnswer/    - sets color values of letters for a given guess against the daily word
+              /change-answer/  - update future answers
 
 1. /checkAnswer/
       The 'check-answer' command will call the "answerCheck()" function to initialize 3 empty
