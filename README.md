@@ -4,7 +4,7 @@
 
 # "How to initialize the databases & start the services"/"Example commands for methods"
 
-- **To get started, it is required to run the AnswersDB.py and WordsDB.py files before running the procfile! _This is to initialize the databases._**
+- **To get started, it is required to run the AnswersDB.py and WordsDB.py files before running the procfile! _This is to create the databases if they do not already exist._**
 <br> `$ python3 AnswersDB.py`
 <br> `$ python3 WordsDB.py`
 
