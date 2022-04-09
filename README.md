@@ -2,7 +2,7 @@
 ###### Authors: Tianna Cano, Patrick Lin, Raymond Magdaleno, Mark Wiedman
 ###### Date   : 4/8/2022
 
-# How to Initialize the Words and Answer Databases as well as utilize the Guess Validation and Answer Validation Microservices
+# Database and Microservice Initialization
 - **You can clone this github repo or download and extract the folder onto your machine.**
 
 - **It is required to run the AnswersDB.py and WordsDB.py files before running the procfile! _This is to create and initialize the databases if they do not already exist._**
@@ -13,7 +13,7 @@
 <br> `$ foreman start`
 ![VirtualBox_Tuffix 2020 Edition_08_04_2022_19_58_09](https://user-images.githubusercontent.com/39601543/162554364-03d65d09-02ec-4de7-83a5-5adcbb0efc2d.png)
 
-
+# Answer Checker Microservice
 > Commands in File "AnswerValidation.py"<br>
 > Description: 'AnswerValidation.py' handles the database of possible answers, and is responsible for
               setting the color values of each letter for a user's given guess.
@@ -41,6 +41,7 @@
    ![DBA1](https://user-images.githubusercontent.com/39601543/162555430-b365e090-fc0e-4203-afa7-cfb57e4ba6cf.png)
    ![DBA2](https://user-images.githubusercontent.com/39601543/162555440-afd352f3-9813-4f5e-be86-8d4de8b09d40.png)
 
+#Guess Validation Microservice
 > Commands in File "WordValidation.py" <br>
 > Description: 'WordValidation.py' handles the database of possible words, and is responsible for
               validating if a user guess is valid.
