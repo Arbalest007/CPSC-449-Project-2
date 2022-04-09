@@ -23,10 +23,10 @@ def validate(userInput: userWord):
 
     if cur.execute("SELECT 1 FROM t WHERE Words = ?", (userInput.guess,)).fetchone():
         con.close()
-        return True
+        return {"isValidGuess": True}
     else:
         con.close()
-        return False
+        return {"isValidGuess": False}
 
 #Add guesses to the Words DB
 @app.post('/add-guess/', status_code=status.HTTP_202_ACCEPTED)
@@ -44,7 +44,7 @@ def add(addWords: wordList):
     
     con.close()
 
-    return "Words added to DB!"
+    return {"status": "Guesses added to DB!"}
 
 #Remove guesses from the Words DB
 @app.post('/remove-guess/', status_code=status.HTTP_202_ACCEPTED)
@@ -62,4 +62,4 @@ def remove(removeWords: wordList):
     
     con.close()
 
-    return "Words removed from DB!"
+    return {"status": "Guesses removed from DB!"}

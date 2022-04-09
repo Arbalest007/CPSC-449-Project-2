@@ -16,7 +16,8 @@ class answers(BaseModel):
     gameID: int
 
 class wordList(BaseModel):
-    words: List[str] = None
+    word: str
+    gameID: int
 
 app = FastAPI()
 
@@ -105,37 +106,21 @@ def check(input: answers):
     return currentCheck
 
 #Add answers
-@app.post('/add-answer/', status_code=status.HTTP_202_ACCEPTED)
-def add(addWords: wordList):
+@app.post('/change-answer/', status_code=status.HTTP_202_ACCEPTED)
+def add(input: wordList):
     #Connect DB
     con = sqlite3.connect("answers.db")
     cur = con.cursor()
 
-    for i in addWords.words:
-        try:
-            cur.execute("INSERT INTO a VALUES(?)", (i,))
-            con.commit()
-        except:
-            print(i + " already exists in the Answers database")
+    print(input.word)
+    print(input.gameID)
+
+    try:
+        cur.execute("UPDATE a SET Answers = ? WHERE ID = ?", (input.word, input.gameID))
+        con.commit()
+    except:
+        print("Error updating the DB")
     
     con.close()
 
-    return "Words added to DB!"
-
-#Remove answers
-@app.post('/remove-answer/', status_code=status.HTTP_202_ACCEPTED)
-def remove(removeWords: wordList):
-    #Connect DB
-    con = sqlite3.connect("answers.db")
-    cur = con.cursor()
-
-    for i in removeWords.words:
-        try:
-            cur.execute("DELETE FROM a WHERE Answers = ?", (i,))
-            con.commit()
-        except:
-            print("Unable to delete value of: " + i)
-    
-    con.close()
-
-    return "Answers removed from DB!"        
+    return {"status": "Future Game Answer Updated Successfully!"}
