@@ -13,7 +13,7 @@ class answerCheck(BaseModel):
 
 class answers(BaseModel):
     user: str
-    server: str
+    gameID: int
 
 class wordList(BaseModel):
     words: List[str] = None
@@ -28,6 +28,21 @@ Validate the answer to identify which letters are:
 """
 @app.post('/checkAnswer/')
 def check(input: answers):
+    #Retrieve the current game answer based on the passed in Game ID
+    con = sqlite3.connect("answers.db")
+    cur = con.cursor()
+    server = ""
+
+    try:
+        fetch = cur.execute("SELECT Answers FROM a WHERE ID = ?", (input.gameID,)).fetchall()
+        con.commit()
+
+        server = fetch[0][0]
+
+        print("The Daily Answer is: " + server)
+    except:
+        print("Game # " + str(input.gameID) + " does not exist in this database!")
+
     #Counter to iterate through for green indexes
     greenCounter = 0
 
@@ -36,7 +51,7 @@ def check(input: answers):
     for character in input.user:
         #If the current character equals the letter in the daily answer string at the same location then
         #add that index to greenIndexes
-        if character == input.server[greenCounter]:
+        if character == server[greenCounter]:
             currentCheck.greenIndexes.append(greenCounter)
             greenCounter += 1
         else:
@@ -58,16 +73,16 @@ def check(input: answers):
         #If the index already exists as green then we skip to next one
         if not(i in currentCheck.greenIndexes):
             #If the character exists it may be yellow or gray depending on how many occurences there are in the answer
-            if character in input.server:
+            if character in server:
                 #Get the total # of occurences the answer has this character
-                totalCount = input.server.count(character)
+                totalCount = server.count(character)
 
                 greenCount = 0
                 yellowCount = 0
 
                 #Check how many times we have matched this character exactly
                 for a in currentCheck.greenIndexes:
-                    if input.server[a] == character:
+                    if server[a] == character:
                         greenCount += 1
                 #Check how many times we have marked this character as right letter, wrong place
                 for b in currentCheck.yellowIndexes:
